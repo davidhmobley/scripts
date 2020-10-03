@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-	echo "Usage: `basename $0` [-d <dev|test|staging>] [-t <target>] string"
+	echo "Usage: `basename $0` [-x] [-d <dev|test|staging>] [-t <target>] string"
 	
 	exit
 }
@@ -19,19 +19,23 @@ if [ $# -eq 0 ]; then
 fi
 
 str=""
+xarg=1 # false
 environment=""
 target=""
 stop=1 # false
 
 # process commandline args
-while getopts ":d:t:" opt; do
+while getopts ":xd:t:" opt; do
   case ${opt} in
+    x )
+      xarg=0 # true
+      ;;
     t )
       target=$OPTARG
       ;;
     d )
-	  environment=$OPTARG
-	  ;;
+      environment=$OPTARG
+      ;;
     \? )
       echo "Invalid option: $OPTARG" 1>&2
 	  stop=0 #true
@@ -69,6 +73,9 @@ fi
 # build command string
 #command="$0"
 command=`basename $0`
+if [ $xarg -eq 0 ]; then
+    command="$command -x" 
+fi
 if [[ -n "$environment" ]]; then
 	command="$command -d $environment"
 fi
