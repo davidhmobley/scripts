@@ -68,7 +68,7 @@ fi
 
 # build command string
 #command="$0"
-command="${0##*/}"
+command=`basename $0`
 if [[ -n "$environment" ]]; then
 	command="$command -d $environment"
 fi
