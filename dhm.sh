@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-	echo "Usage: $0 [-d <dev|test|staging>] [-t <target>] string"
+	echo "Usage: ${0##*/} [-d <dev|test|staging>] [-t <target>] string"
 	
 	exit
 }
