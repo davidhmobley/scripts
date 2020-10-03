@@ -7,7 +7,7 @@ usage() {
 }
 
 prettyPrint() {
-	for ((i = 0 ; i < ${#command} ; i++)); do
+	for ((i = 0 ; i < ${#1} ; i++)); do
 	  printf "*"
 	done
 	printf "\n"
@@ -77,7 +77,7 @@ if [[ -n "$target" ]]; then
 fi
 command="$command $str"
 
-prettyPrint
+prettyPrint "$command"
 echo "$command"
-prettyPrint
+prettyPrint "$command"
 
