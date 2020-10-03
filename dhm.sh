@@ -76,10 +76,10 @@ command=`basename $0`
 if [ $xarg -eq 0 ]; then
     command="$command -x" 
 fi
-if [[ -n "$environment" ]]; then
+if [ -n "$environment" ]; then
 	command="$command -d $environment"
 fi
-if [[ -n "$target" ]]; then
+if [ -n "$target" ]; then
 	command="$command -t $target"
 fi
 command="$command $str"
