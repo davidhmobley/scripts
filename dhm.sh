@@ -6,7 +6,12 @@ usage() {
 	exit
 }
 
-echo "`basename $0` is the program"
+prettyPrint() {
+	for ((i = 0 ; i < ${#command} ; i++)); do
+	  printf "*"
+	done
+	printf "\n"
+}
 
 # get out if nothing passed in
 if [ $# -eq 0 ]; then
@@ -71,5 +76,8 @@ if [[ -n "$target" ]]; then
 	command="$command -t $target"
 fi
 command="$command $str"
-echo "==> $command <=="
+
+prettyPrint
+echo "$command"
+prettyPrint
 
