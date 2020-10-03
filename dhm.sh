@@ -1,10 +1,12 @@
 #!/bin/bash
 
 usage() {
-	echo "Usage: ${0##*/} [-d <dev|test|staging>] [-t <target>] string"
+	echo "Usage: `basename $0` [-d <dev|test|staging>] [-t <target>] string"
 	
 	exit
 }
+
+echo "`basename $0` is the program"
 
 # get out if nothing passed in
 if [ $# -eq 0 ]; then
