@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-	echo "Usage: `basename $0` [-x] [-d <dev|test|staging>] [-t <target>] string"
+	echo "Usage: `basename $0` [-x] [-d {dev|test|staging}] [-t <target>] string"
 	
 	exit
 }
