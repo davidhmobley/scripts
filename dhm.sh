@@ -87,4 +87,3 @@ command="$command $str"
 prettyPrint "$command"
 echo "$command"
 prettyPrint "$command"
-
