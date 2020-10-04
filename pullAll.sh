@@ -24,7 +24,7 @@ for i in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3-); do
 	    # finally pull
 	    git pull origin master;
 	else
-		echo "*** $i not under git control, skipping"
+		echo "*** not under git control, skipping"
 	fi	
 done
 
