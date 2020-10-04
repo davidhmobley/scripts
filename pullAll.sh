@@ -11,16 +11,21 @@ cd ~/StudioProjects
 echo "Pulling in latest changes for all repositories..."
 
 # Find all git repositories and update it to the master latest revision
-for i in $(find . -mindepth 1 -maxdepth 1 -type d -print -name ".git" | cut -c 3-); do
+for i in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3-); do
     echo "";
     echo "$i";
     cd "/users/david/StudioProjects/$i";
 	
-	# get to the master branch
-	git checkout master
+	# under git control?
+	if [ -d ".git" ]; then
+		# get to the master branch
+		git checkout master
 
-    # finally pull
-    git pull origin master;
+	    # finally pull
+	    git pull origin master;
+	else
+		echo "*** $i not under git control, skipping"
+	fi	
 done
 
 # lets get back to the CUR_DIR
