@@ -13,16 +13,11 @@ prettyPrint() {
 	printf "\n"
 }
 
-# get out if nothing passed in
-if [ $# -eq 0 ]; then
-	usage
-fi
-
-str=""
 xarg=1 # false
+stop=1 # false
+str=""
 environment=""
 target=""
-stop=1 # false
 
 # process commandline args
 while getopts ":xd:t:" opt; do
