@@ -5,7 +5,7 @@ usage() {
 	
 	exit
 }
-
+ 
 # line separator
 prettyPrint() {
     chars=$1
