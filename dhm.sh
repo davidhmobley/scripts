@@ -1,16 +1,30 @@
 #!/bin/bash
 
 usage() {
-	echo "Usage: `basename $0` [-x] [-d {dev|test|staging}] [-t <target>] string"
+	echo "Usage: `basename $0` [-x] [-e {dev|test|staging}] [-t <target>] string"
 	
 	exit
 }
 
+# line separator
 prettyPrint() {
-	for ((i = 0 ; i < ${#1} ; i++)); do
-	  printf "*"
-	done
-	printf "\n"
+    chars=$1
+    firstChar=1 #false
+
+    for ((i = 0 ; i < ${#chars} ; i++)); do
+        # any blanks prefixing the line?
+        if [ $firstChar -eq 1 ]; then
+            if [[ ${chars:$i:1} == " " ]]; then
+                #echo "...found a blank at $i"
+                printf " " 
+            else
+                firstChar=0 #true
+            fi
+        else
+            printf "*"
+        fi
+    done
+    printf "\n"
 }
 
 xarg=1 # false
@@ -20,7 +34,7 @@ environment=""
 target=""
 
 # process commandline args
-while getopts ":xd:t:" opt; do
+while getopts ":xe:t:" opt; do
   case ${opt} in
     x )
       xarg=0 # true
@@ -28,7 +42,7 @@ while getopts ":xd:t:" opt; do
     t )
       target=$OPTARG
       ;;
-    d )
+    e )
       environment=$OPTARG
       ;;
     \? )
@@ -53,7 +67,7 @@ if [ $# -eq 0 ]; then
 	usage
 fi
 
-# verify -d arg
+# verify -e arg
 if [ ! $environment == "dev" ] && [ ! $environment == "test" ] && [ ! $environment == "staging" ]; then
 	usage
 fi
@@ -66,13 +80,12 @@ else
 fi
 
 # build command string
-#command="$0"
 command=`basename $0`
 if [ $xarg -eq 0 ]; then
     command="$command -x" 
 fi
 if [ -n "$environment" ]; then
-	command="$command -d $environment"
+	command="$command -e $environment"
 fi
 if [ -n "$target" ]; then
 	command="$command -t $target"
@@ -82,3 +95,6 @@ command="$command $str"
 prettyPrint "$command"
 echo "$command"
 prettyPrint "$command"
+
+echo "    $command"
+prettyPrint "    $command"
