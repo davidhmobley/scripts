@@ -5,7 +5,7 @@ usage() {
 	
 	exit
 }
- 
+
 # line separator
 prettyPrint() {
     chars=$1
@@ -15,7 +15,6 @@ prettyPrint() {
         # any blanks prefixing the line?
         if [ $firstChar -eq 1 ]; then
             if [[ ${chars:$i:1} == " " ]]; then
-                #echo "...found a blank at $i"
                 printf " " 
             else
                 firstChar=0 #true
