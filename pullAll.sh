@@ -18,11 +18,19 @@ for i in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3-); do
 	
 	# under git control?
 	if [[ -d ".git" ]]; then
-		# get to the master branch
-		git checkout master
+		if [[ $i == "scripts" ]]; then
+			# get to the main branch
+			git checkout main
 
-	    # finally pull
-	    git pull origin master;
+		    # finally pull
+			git pull origin main;
+		else
+			# get to the master branch
+			git checkout master
+
+			# finally pull
+	    	git pull origin master;
+		fi
 	else
 		echo "*** not under git control, skipping"
 	fi	
