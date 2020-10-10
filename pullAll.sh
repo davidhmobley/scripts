@@ -28,6 +28,12 @@ for i in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3-); do
 	fi	
 done
 
+# another directory i use
+echo " "
+cd ~/GitHub/scripts
+echo $PWD
+git pull origin main
+
 # lets get back to the CUR_DIR
 cd $CUR_DIR
 
