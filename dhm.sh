@@ -13,7 +13,7 @@ prettyPrint() {
 
     for ((i = 0 ; i < ${#chars} ; i++)); do
         # any blanks prefixing the line?
-        if [ $firstChar -eq 1 ]; then
+        if [[ $firstChar -eq 1 ]]; then
             if [[ ${chars:$i:1} == " " ]]; then
                 printf " " 
             else
@@ -57,12 +57,12 @@ done
 shift $((OPTIND -1))
 
 # encountered an anomaly in processing commandline args?
-if [ $stop -eq 0 ]; then
+if [[ $stop -eq 0 ]]; then
 	usage
 fi
 
 # nothing left? get out
-if [ $# -eq 0 ]; then
+if [[ $# -eq 0 ]]; then
 	usage
 fi
 
@@ -72,7 +72,7 @@ if [ ! $environment == "dev" ] && [ ! $environment == "test" ] && [ ! $environme
 fi
 
 # should be only one commandline arg left
-if [ $# -eq 1 ]; then
+if [[ $# -eq 1 ]]; then
 	str=$1
 else
 	usage
@@ -80,13 +80,13 @@ fi
 
 # build command string
 command=`basename $0`
-if [ $xarg -eq 0 ]; then
+if [[ $xarg -eq 0 ]]; then
     command="$command -x" 
 fi
-if [ -n "$environment" ]; then
+if [[ -n "$environment" ]]; then
 	command="$command -e $environment"
 fi
-if [ -n "$target" ]; then
+if [[ -n "$target" ]]; then
 	command="$command -t $target"
 fi
 command="$command $str"

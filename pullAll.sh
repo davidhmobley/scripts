@@ -17,7 +17,7 @@ for i in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3-); do
     cd "/users/david/StudioProjects/$i";
 	
 	# under git control?
-	if [ -d ".git" ]; then
+	if [[ -d ".git" ]]; then
 		# get to the master branch
 		git checkout master
 

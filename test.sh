@@ -16,15 +16,3 @@ echo "Enter name of DB:"
 read dbName
 echo "You entered $dbName"
 
-echo " "
-
-prettyPrint() {
-	for ((i = 0 ; i < ${#1} ; i++)); do
-	  printf "*"
-	done
-	printf "\n"
-}
-
-prettyPrint "this is a string yet another string"
-echo "this is a string yet another string"
-prettyPrint "this is a string yet another string"
