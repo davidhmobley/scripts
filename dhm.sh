@@ -67,7 +67,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 # verify -e arg
-if [[ ! $environment == "dev" ]] && [[ ! $environment == "test" ]] && [[ ! $environment == "staging" ]]; then
+if [ ! $environment == "dev" ] && [ ! $environment == "test" ] && [ ! $environment == "staging" ]; then
 	usage
 fi
 
