@@ -8,8 +8,9 @@ usage() {
 
 # line separator
 prettyPrint() {
-    chars=$1
-    firstChar=1 #false
+    local chars=$1
+    local firstChar=1 #false
+    local i=0
 
     for ((i = 0 ; i < ${#chars} ; i++)); do
         # any blanks prefixing the line?
