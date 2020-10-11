@@ -55,8 +55,7 @@ if [[ $stop -eq 0 ]]; then
 fi
 
 # nothing left? get out
-echo "nbr parms left $#" # remove
-if [[ $# -eq 0 ]]; then
+if [[ ! $# -eq 0 ]]; then
 	usage
 fi
 
