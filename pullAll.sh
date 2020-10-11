@@ -1,5 +1,12 @@
 #!/bin/zsh
 
+usage() {
+	echo "Usage: `basename $0` [-h]"
+	echo "       does a \"git pull\" on all git repos in ~/StudioProjects"
+		
+	exit
+}
+
 # line separator
 prettyPrint() {
     local chars=$1
@@ -20,6 +27,38 @@ prettyPrint() {
     done
     printf "\n"
 }
+
+#vars
+stop=1 # false
+
+# process commandline args
+while getopts ":h" opt; do
+  case ${opt} in
+    h )
+      usage
+      ;;
+    \? )
+      echo "Invalid option: $OPTARG" 1>&2
+	  stop=0 #true
+      ;;
+    : )
+      echo "Invalid option: $OPTARG requires an argument" 1>&2
+	  stop=0 #true
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+# encountered an anomaly in processing commandline args?
+if [[ $stop -eq 0 ]]; then
+	usage
+fi
+
+# nothing left? get out
+echo "nbr parms left $#" # remove
+if [[ $# -eq 0 ]]; then
+	usage
+fi
 
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
