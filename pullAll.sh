@@ -2,13 +2,14 @@
 
 # line separator
 prettyPrint() {
-    chars=$1
-    firstChar=1 #false
-
-    for ((pp = 0 ; pp < ${#chars} ; pp++)); do
+    local chars=$1
+    local firstChar=1 #false
+    local i=0
+	
+    for ((i = 0 ; i < ${#chars} ; i++)); do
         # any blanks prefixing the line?
         if [[ $firstChar -eq 1 ]]; then
-            if [[ ${chars:$pp:1} == " " ]]; then
+            if [[ ${chars:$i:1} == " " ]]; then
                 printf " " 
             else
                 firstChar=0 #true
@@ -34,7 +35,7 @@ echo "Pulling in latest changes for all repositories..."
 for project in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3-); do
     echo "$project";
 	prettyPrint "$project"
-	
+
     cd ~/StudioProjects/$project
 	
 	# under git control?
