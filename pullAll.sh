@@ -5,10 +5,10 @@ prettyPrint() {
     chars=$1
     firstChar=1 #false
 
-    for ((i = 0 ; i < ${#chars} ; i++)); do
+    for ((pp = 0 ; pp < ${#chars} ; pp++)); do
         # any blanks prefixing the line?
         if [[ $firstChar -eq 1 ]]; then
-            if [[ ${chars:$i:1} == " " ]]; then
+            if [[ ${chars:$pp:1} == " " ]]; then
                 printf " " 
             else
                 firstChar=0 #true
