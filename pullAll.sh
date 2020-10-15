@@ -70,7 +70,7 @@ cd ~/StudioProjects
 echo "Pulling in latest changes for all repositories..."
 
 # Find all git repositories and update it to the master latest revision
-for project in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3-); do
+for project in $(find . -mindepth 1 -maxdepth 1 -type d -print | cut -c 3- | sort); do
     echo "$project";
 	prettyPrint "$project"
 
