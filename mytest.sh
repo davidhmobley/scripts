@@ -1,6 +1,6 @@
 #!/bin/bash
 
-str="2. Hello {\"a\"\r, \"b\"\r}"
+str="2. Hello {\"a\": \"cat\"\r, \"b\": \"dog\"\r}"
 echo "Original: $str"
 
 str=$(echo $str | tr -d '\\r')
@@ -12,3 +12,5 @@ echo "NonJson: $nonjson"
 json=$(echo $str | cut -d'{' -f 2)
 json="{${json}"
 echo "Json: $json"
+echo "formatted json..."
+echo $json | jq .
